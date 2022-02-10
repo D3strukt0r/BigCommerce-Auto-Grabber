@@ -47,10 +47,8 @@
     // END
 
     let pullButton = null;
-    let submitButton = null;
 
     let autoGrabRunning = false;
-    let orderWasSubmitted = false;
 
     document.addEventListener('keydown', function (e) {
         if (e.ctrlKey && e.key === 'c' && autoGrabRunning) {
@@ -101,6 +99,28 @@
     function addGrabClickEvent(el) {
         console.log(el);
 
+        // Check for product image update to initiate next grab
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                console.log('Product image changed to:')
+                console.log(mutation.target)
+                if (
+                    autoGrabRunning
+                    && mutation.type === 'attributes'
+                    && !mutation.target.getAttribute('imgurl').startsWith('/img/sucai_lihe')
+                ) {
+                    // Use a delay or grab doesn't get triggered
+                    delay(250).then(() => {
+                        pullButton.click();
+                    });
+                }
+            });
+        });
+        const elAnimation = document.querySelector('.animation_layout');
+        observer.observe(elAnimation, {
+            attributes: true, // configure it to listen to attribute changes
+        });
+
         // Start Auto Grabber by clicking "Automatic grab"
         el.addEventListener('click', (e) => {
             console.log('Start auto puller ...')
@@ -113,7 +133,6 @@
             // TODO: Get rid of animation instead
             delay(5000).then(() => {
                 findSubmitButton();
-                findNextMomentForGrab();
             });
         }, { once: true });
     }
@@ -121,28 +140,21 @@
         // Check for button each X seconds until Vue.js has updated the DOM
         if (autoGrabRunning) { // Use if instead of while. "while" gets stuck
             delay(250).then(() => {
-                submitButton = document.querySelector('.check_order .btns .btn.submit');
-                if (submitButton === null) {
+                const submitModal = document.querySelector('.check_order');
+                // If submit is triggered too early it's disabled (sent but cannot continue)
+                // TODO: getComputedStyle failed
+                if (window.getComputedStyle(submitModal).display === 'block') {
+                    const submitButton = submitModal.querySelector('.btns .btn.submit:not(.disabled)');
+                    if (submitButton === null) {
+                        findSubmitButton();
+                    } else {
+                        console.log('Found submit button');
+                        console.log(submitButton);
+                        submitButton.click();
+                        findSubmitButton();
+                    }
+                } else {
                     findSubmitButton();
-                } else {
-                    console.log('Found submit button');
-                    console.log(submitButton);
-                    submitButton.click();
-                    orderWasSubmitted = true;
-                }
-            });
-        }
-    }
-
-    function findNextMomentForGrab() {
-        if (autoGrabRunning) {
-            delay(250).then(() => {
-                if (orderWasSubmitted) {
-                    orderWasSubmitted = false;
-                    pullButton.click();
-                    findNextMomentForGrab();
-                } else {
-                    findNextMomentForGrab();
                 }
             });
         }
