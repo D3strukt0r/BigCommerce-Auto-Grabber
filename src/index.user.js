@@ -4,7 +4,14 @@
 // @version      0.1
 // @description  Automaticall trigger all pulls
 // @author       D3strukt0r
+// @match        https://www.bcm12345.com/
+// @match        https://www.bcm16888.com/
+// @match        https://www.bcm33339.com/
+// @match        https://www.bcm33366.com/
+// @match        https://www.bcm55888.com/
+// @match        https://www.bcm62304.com/
 // @match        https://www.bcm78789.com/
+// @match        https://www.bcm85858.com/
 // @icon         https://icons.duckduckgo.com/ip2/bcm78789.com.ico
 // @grant        none
 // ==/UserScript==
@@ -47,8 +54,8 @@
     // END
 
     let pullButton = null;
-
     let autoGrabRunning = false;
+    let observer = null;
 
     document.addEventListener('keydown', function (e) {
         if (e.ctrlKey && e.key === 'c' && autoGrabRunning) {
@@ -68,6 +75,7 @@
     autoGrabNote.style.backgroundColor = 'rgb(34, 34, 34)';
     autoGrabNote.style.color = 'rgb(255, 255, 255)';
     autoGrabNote.style.padding = `${convertRemToPixels(1)}px ${convertRemToPixels(2)}px`;
+    autoGrabNote.style.zIndex = 1;
 
     if (window.location.hash.substring(1).startsWith('/grab')) {
         console.log('Already on /grab. Finding button ...');
@@ -100,7 +108,7 @@
         console.log(el);
 
         // Check for product image update to initiate next grab
-        const observer = new MutationObserver((mutations) => {
+        observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 console.log('Product image changed to:')
                 console.log(mutation.target)
@@ -110,14 +118,17 @@
                     && !mutation.target.getAttribute('imgurl').startsWith('/img/sucai_lihe')
                 ) {
                     // Use a delay or grab doesn't get triggered
+                    console.log('Click on grab and disconnecting ...');
+                    observer.disconnect();
+
                     delay(250).then(() => {
                         pullButton.click();
                     });
                 }
             });
         });
-        const elAnimation = document.querySelector('.animation_layout');
-        observer.observe(elAnimation, {
+        console.log('Connecting Observer ...');
+        observer.observe(document.querySelector('.animation_layout'), {
             attributes: true, // configure it to listen to attribute changes
         });
 
@@ -140,18 +151,31 @@
         // Check for button each X seconds until Vue.js has updated the DOM
         if (autoGrabRunning) { // Use if instead of while. "while" gets stuck
             delay(250).then(() => {
+                console.log('Finding submit button ...')
                 const submitModal = document.querySelector('.check_order');
                 // If submit is triggered too early it's disabled (sent but cannot continue)
-                // TODO: getComputedStyle failed
-                if (window.getComputedStyle(submitModal).display === 'block') {
+                if (submitModal && window.getComputedStyle(submitModal).display === 'block') {
                     const submitButton = submitModal.querySelector('.btns .btn.submit:not(.disabled)');
                     if (submitButton === null) {
                         findSubmitButton();
                     } else {
-                        console.log('Found submit button');
-                        console.log(submitButton);
-                        submitButton.click();
-                        findSubmitButton();
+                        // Click submit after X seconds of the modal appearing
+                        delay(250).then(() => {
+                            console.log('Found submit button');
+                            console.log(submitButton);
+                            submitButton.click();
+
+                            delay(5000).then(() => {
+                                // Observer seems to be automatically removed so re-add for next grab
+                                console.log('Connecting Observer ...');
+                                observer.observe(document.querySelector('.animation_layout'), {
+                                    attributes: true, // configure it to listen to attribute changes
+                                });
+
+                                // Find submit for next grab
+                                findSubmitButton();
+                            });
+                        });
                     }
                 } else {
                     findSubmitButton();
