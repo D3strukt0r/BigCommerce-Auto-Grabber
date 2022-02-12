@@ -39,3 +39,5 @@ ij_visual_guides = 80,120
 trim_trailing_whitespace = false
 
 #[.editorconfig]
+
+#[{*.bash,*.sh,*.zsh}]

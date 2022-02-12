@@ -4,7 +4,7 @@
 
 No one, yet 🙂
 
-See also the full list of [contributors](https://github.com/D3strukt0r/bigcommerce-autopuller/contributors) who participated in this project.
+See also the full list of [contributors](https://github.com/D3strukt0r/BigCommerce-AutoPuller/contributors) who participated in this project.
 
 ## I would like to join this list. How can I help the project?
 

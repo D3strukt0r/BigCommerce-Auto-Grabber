@@ -4,14 +4,7 @@
 // @version      0.1
 // @description  Automaticall trigger all pulls
 // @author       D3strukt0r
-// @match        https://www.bcm12345.com/
-// @match        https://www.bcm16888.com/
-// @match        https://www.bcm33339.com/
-// @match        https://www.bcm33366.com/
-// @match        https://www.bcm55888.com/
-// @match        https://www.bcm62304.com/
-// @match        https://www.bcm78789.com/
-// @match        https://www.bcm85858.com/
+// @include      /^https?://(www\.)?bcm[0-9]{5}\.com/
 // @icon         https://icons.duckduckgo.com/ip2/bcm78789.com.ico
 // @grant        none
 // ==/UserScript==
