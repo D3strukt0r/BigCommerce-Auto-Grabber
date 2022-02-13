@@ -4,20 +4,20 @@ Auto Puller for BigCommerce
 
 Project
 
-[![License](https://img.shields.io/github/license/d3strukt0r/BigCommerce-AutoPuller)](LICENSE.txt)
+[![License](https://img.shields.io/github/license/d3strukt0r/BigCommerce-Auto-Grabber)](LICENSE.txt)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 <!--
 master-branch (alias main, stable, latest)
 
-[![GH Action CI/CD](https://github.com/D3strukt0r/BigCommerce-AutoPuller/workflows/CI/CD/badge.svg?branch=master)][gh-action]
+[![GH Action CI/CD](https://github.com/D3strukt0r/BigCommerce-Auto-Grabber/workflows/CI/CD/badge.svg?branch=master)][gh-action]
 [![Codacy grade](https://img.shields.io/codacy/grade/{id}/master)][codacy]
 -->
 
 <!--
 develop-branch (alias nightly)
 
-[![GH Action CI/CD](https://github.com/D3strukt0r/BigCommerce-AutoPuller/workflows/CI/CD/badge.svg?branch=develop)][gh-action]
+[![GH Action CI/CD](https://github.com/D3strukt0r/BigCommerce-Auto-Grabber/workflows/CI/CD/badge.svg?branch=develop)][gh-action]
 [![Codacy grade](https://img.shields.io/codacy/grade/{id}/develop)][codacy]
 -->
 
@@ -57,7 +57,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [GitHub Actions](https://github.com/features/actions) - CI (Testing) / CD (Deployment)
+-   [GitHub Actions](https://github.com/features/actions) - CI (Testing) / CD (Deployment)
 
 ## Contributing
 
@@ -83,7 +83,7 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 
 A list of used libraries and code with their licenses can be seen in the [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md) file.
 
-[gh-action]: https://github.com/D3strukt0r/BigCommerce-AutoPuller/actions
-[gh-tags]: https://github.com/D3strukt0r/BigCommerce-AutoPuller/tags
-[gh-contributors]: https://github.com/D3strukt0r/BigCommerce-AutoPuller/contributors
-[codacy]: https://www.codacy.com/manual/D3strukt0r/BigCommerce-AutoPuller
+[gh-action]: https://github.com/D3strukt0r/BigCommerce-Auto-Grabber/actions
+[gh-tags]: https://github.com/D3strukt0r/BigCommerce-Auto-Grabber/tags
+[gh-contributors]: https://github.com/D3strukt0r/BigCommerce-Auto-Grabber/contributors
+[codacy]: https://www.codacy.com/manual/D3strukt0r/BigCommerce-Auto-Grabber
