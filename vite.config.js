@@ -24,9 +24,9 @@ export default defineConfig({
                 homepageURL: packageConfig.homepage,
                 icon: 'https://icons.duckduckgo.com/ip2/bcm78789.com.ico',
                 updateURL:
-                    'https://raw.githubusercontent.com/D3strukt0r/BigCommerce-Auto-Grabber/master/src/index.user.js',
+                    'https://github.com/D3strukt0r/BigCommerce-Auto-Grabber/releases/latest/download/bigcommerce-auto-grabber.cjs.user.js',
                 downloadURL:
-                    'https://raw.githubusercontent.com/D3strukt0r/BigCommerce-Auto-Grabber/master/src/index.user.js',
+                    'https://github.com/D3strukt0r/BigCommerce-Auto-Grabber/releases/latest/download/bigcommerce-auto-grabber.cjs.user.js',
                 supportURL: packageConfig.bugs.url,
                 contributionURL: packageConfig.funding[1].url,
                 include: '/^https?://(www.)?bcm[0-9]{5}.com/',
