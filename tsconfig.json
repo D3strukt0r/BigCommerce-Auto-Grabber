@@ -1,0 +1,43 @@
+{
+    // https://www.typescriptlang.org/tsconfig
+    "compilerOptions": {
+        /*
+         * Type Checking
+         */
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "strict": true,
+
+        /*
+         * Modules
+         */
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "resolveJsonModule": true,
+
+        /*
+         * Emit
+         */
+        "noEmit": true,
+        "sourceMap": true,
+
+        /*
+         * Interop Constraints
+         */
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+
+        /*
+         * Language and Environment
+         */
+        "lib": ["ESNext", "DOM"],
+        "target": "ES2015",
+        "useDefineForClassFields": true
+    },
+    "include": [
+        "src/**/*.d.ts",
+        "src/**/*.js",
+        "src/**/*.ts"
+    ]
+}
